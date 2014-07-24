@@ -2,9 +2,11 @@
 
 import("lwr_fri")
 import("kuka_simple_demo")
+import("ATISensor")
 
 loadComponent("lwr", "lwr_fri::FRIRTNetComponent")
 loadComponent("KukaDemo", "KukaSimpleDemoRTNET")
+loadComponent("ATI","ATISensor")
 
 setActivity("lwr", 0, 99, ORO_SCHED_RT)
 setActivity("KukaDemo", 0.001, 90, ORO_SCHED_RT)
@@ -25,7 +27,6 @@ cp.lock_policy = LOCKED
 connect("lwr.events", "KukaDemo.Events_i", cp)
 connect("lwr.msrJntPos", "KukaDemo.MsrJntPos_i", cp)
 connect("lwr.msrJntVel","KukaDemo.msrJntVel_i",cp)
-
 
 KukaDemo.configure
 KukaDemo.friReset
